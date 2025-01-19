@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <title>Real Talk Results - Business Growth Solutions</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.15) 0%, rgba(0, 0, 0, 0) 50%);
+        }
+
+        .gradient-background {
+            background: linear-gradient(-45deg, #94a30b, #cc2464, #23d5ab, #1e7b9c);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        .noise-bg {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .noise-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #4B5563 transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #4B5563;
+            border-radius: 3px;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .zoom-hover {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .zoom-hover:hover {
+            transform: scale(1.05);
+        }
+
+        .box-hover {
+            transition: transform 0.6s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .box-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .power-text {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: powerSlide 0.8s ease forwards;
+        }
+
+        .power-text:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .power-text:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .power-text:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .power-text:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        .power-text:nth-child(5) {
+            animation-delay: 1s;
+        }
+
+        @keyframes powerSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gradient-text {
+            background-size: 200% 200%;
+            animation: gradientMove 3s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .button-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: buttonSlide 0.8s ease forwards;
+            animation-delay: 1.2s;
+        }
+
+        @keyframes buttonSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stats-animate {
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: statsSlide 0.8s ease forwards;
+            animation-delay: 1.4s;
+        }
+
+        @keyframes statsSlide {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #f9fafb;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1);
+        }
+
+        .loading-screen.loaded {
+            transform: translateY(-100%);
+        }
+
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 3px solid #222;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            animation: loader 1s linear infinite;
+            display: block;
+        }
+
+        @keyframes loader {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading {
+            overflow: hidden;
+        }
+
+        .loading-tips {
+            display: block;
+            font-size: 0.875rem;
+            opacity: 0.6;
+            max-width: 300px;
+            text-align: center;
+            margin-top: 1rem;
+            color: #222;
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        /* Custom styles for new elements */
+        .service-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: #FFD700;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .blog-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-color: #FFD700;
+        }
+
+        .blog-card img {
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .blog-card .blog-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .blog-card p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .podcast-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-color: #FFD700;
+        }
+
+
+        .podcast-card img {
+            transition: transform 0.3s ease;
+        }
+
+        .podcast-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .podcast-card .podcast-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .podcast-card p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .button-gradient {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            transition: all 0.3s ease;
+            /* remove button default style */
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .button-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-white custom-scrollbar">
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+        <div class="loading-tips fade-up" style="animation-delay: 0.5s">
+            "Real Talk Results - Transforming Business, One Insight at a Time"
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-40 transition-all duration-500 class= bg-[rgba(0,0,0,0.5)] backdrop-blur-sm"
+        id="mainNav">
+        <div class="container mx-auto px-6">
+            <div class="py-4 flex items-center justify-between">
+                <!-- Logo -->
+                <span
+                    class="text-2xl font-semibold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">Real
+                    Talk Results</span>
+                <div class="flex items-center gap-12">
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex gap-8 text-white" id="desktopMenu">
+
+                        <a href="#home" class="hover:text-gray-900 transition-colors">Home</a>
+                        <a href="#services" class="hover:text-gray-900 transition-colors">Services</a>
+                        <a href="#podcast" class="hover:text-gray-900 transition-colors">Podcast</a>
+                        <a href="#blog" class="hover:text-gray-900 transition-colors">Blog</a>
+                        <a href="#about" class="hover:text-gray-900 transition-colors">About</a>
+                        <a href="#contact" class="hover:text-gray-900 transition-colors">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Desktop Buttons -->
+                <div class="hidden md:flex items-center gap-4">
+                    <button
+                        class="px-6 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black rounded-full hover:opacity-90 transition-all font-semibold">
+                        Get Started
+                    </button>
+                </div>
+
+                <!-- Burger Menu Button -->
+                <button id="burgerBtn" class="md:hidden text-gray-900">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-sm">
+            <div class="px-6 py-4 space-y-4">
+                <a href="#home" class="block text-gray-900/80 hover:text-gray-900 transition-colors">Home</a>
+                <a href="#services" class="block text-gray-900/80 hover:text-gray-900 transition-colors">Services</a>
+                <a href="#podcast" class="block text-gray-900/80 hover:text-gray-900 transition-colors">Podcast</a>
+                <a href="#blog" class="block text-gray-900/80 hover:text-gray-900 transition-colors">Blog</a>
+                <a href="#about" class="block text-gray-900/80 hover:text-gray-900 transition-colors">About</a>
+                <a href="#contact" class="block text-gray-900/80 hover:text-gray-900 transition-colors">Contact</a>
+                <div class="space-y-4 pt-4 border-t border-gray-800/10">
+                    <button
+                        class="w-full px-6 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black rounded-full hover:opacity-90 transition-all font-semibold">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20 hero-gradient bg-black relative">
+        <div id="particles-js" class="absolute inset-0"></div>
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <!-- Text Section -->
+            <div class="z-10 order-2 md:order-1 animate-power">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+
+                    <span class="block power-text" style="animation-delay: 0.4s; margin-bottom: 10px;">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600">
+                            Real Talk
+                        </span>
+                    </span>
+                    <span class="block power-text text-white" style="animation-delay: 0.6s;">
+                        For Your Business
+                    </span>
+                </h1>
+                <p class="text-xl text-gray-400 mb-8 power-text" style="animation-delay: 0.8s;">
+                    Real Talk Results provides honest insights, strategies, and services to help businesses grow.
+                    Explore our podcasts,
+                    articles, and professional solutions tailored for success.
+                </p>
+
+                <div class="flex gap-4">
+                    <button
+                        class="button-gradient magnetic-button text-black px-8 py-4 rounded-full font-medium animate-line"
+                        style="animation-delay: 1s;">
+                        Explore Products
+                    </button>
+                    <button
+                        class="bg-white/10 text-white px-8 py-4 rounded-full font-medium hover:bg-white/20 transition-all duration-300 animate-line"
+                        style="animation-delay: 1.2s;">
+                        Learn More
+                    </button>
+                </div>
+                <div class="flex gap-8 pt-12 ">
+                    <div class="stats-animate">
+                        <p id="clientsCount"
+                            class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600">
+                            0</p>
+                        <p class="text-gray-400">Global Clients</p>
+                    </div>
+                    <div class="stats-animate">
+                        <p id="successCount"
+                            class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600">
+                            0</p>
+                        <p class="text-gray-400">Success Rate</p>
+                    </div>
+                    <div class="stats-animate">
+                        <p id="yearsCount"
+                            class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600">
+                            0</p>
+                        <p class="text-gray-400">Years Experience</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Image Section -->
+            <div class="relative z-10 order-1 md:order-2">
+                <div class="parallax-layer">
+                    <video src="hero.mp4" class="w-full rounded-2xl hover-zoom" autoplay loop muted playsinline>
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gradient-to-r from-gray-900 via-gray-800 to-black">
+        <div class="container mx-auto px-8">
+            <div class="text-center mb-16 fade-in">
+                <h3 class="text-xl font-bold text-gold-400 bg-gradient-to-r bg-clip-text text-transparent mb-6"
+                    style="background-image: linear-gradient(to right, #ffab03, #ffab03, #ffab03); text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.23);">
+                    Services
+                </h3>
+                <h2 class="text-5xl font-bold text-transparent text-white mb-8">
+                    How We Can Help
+                </h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Don't just get advice; get results. Hire our team to implement strategies and drive growth for your
+                    business.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 fade-in">
+                <div
+                    class="service-card transition-all transform hover:scale-105 hover:bg-gray-700 p-6 rounded-lg shadow-lg bg-gray-900 hover:shadow-2xl">
+                    <h3 class="text-2xl font-semibold text-white mb-3">Sales Strategy Implementation</h3>
+                    <p class="mb-6 text-gray-400">We don't just advise; we execute. Let us streamline your sales
+                        processes
+                        and boost your revenue.</p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><span class="text-yellow-400 mr-2"><i class="fas fa-check"></i></span> Sales process
+                            optimization</li>
+                        <li><span class="text-yellow-400 mr-2"><i class="fas fa-check"></i></span> Lead generation
+                            campaigns
+                        </li>
+                        <li><span class="text-yellow-400 mr-2"><i class="fas fa-check"></i></span> CRM setup and
+                            management
+                        </li>
+                    </ul>
+                    <button
+                        class="mt-4 bg-yellow-500 text-black rounded-full py-2 px-6 font-semibold hover:bg-yellow-600 transition-all">Hire
+                        Us</button>
+                </div>
+                <div
+                    class="service-card transition-all transform hover:scale-105 hover:bg-gray-700 p-6 rounded-lg shadow-lg bg-gray-900 hover:shadow-2xl">
+                    <h3 class="text-2xl font-semibold text-white mb-3">Leadership Development Programs</h3>
+                    <p class="mb-6 text-gray-400">Develop your leaders with personalized programs that empower them to
+                        drive
+                        teams effectively.</p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><span class="text-yellow-400 mr-2"><i class="fas fa-check"></i></span> Leadership coaching
+                            and
+                            training</li>
+                        <li><span class="text-yellow-400 mr-2"><i class="fas fa-check"></i></span> Team building events
+                            &
+                            workshops</li>
+                        <li><span class="text-yellow-400 mr-2"><i class="fas fa-check"></i></span> Conflict resolution
+                            strategies</li>
+                    </ul>
+                    <button
+                        class="mt-4 bg-yellow-500 text-black rounded-full py-2 px-6 font-semibold hover:bg-yellow-600 transition-all">Hire
+                        Us</button>
+                </div>
+                <div
+                    class="service-card transition-all transform hover:scale-105 hover:bg-gray-700 p-6 rounded-lg shadow-lg bg-gray-900 hover:shadow-2xl">
+                    <h3 class="text-2xl font-semibold text-white mb-3">Culture Transformation Services</h3>
+                    <p class="mb-6 text-gray-400">Let's create a workplace that attracts top talent and boosts employee
+                        engagement.</p>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><span class="text-yellow-400 mr-2"><i class="fas fa-check"></i></span> Employee engagement
+                            initiatives</li>
+                        <li><span class="text-yellow-400 mr-2"><i class="fas fa-check"></i></span> Company culture
+                            audits
+                        </li>
+                        <li><span class="text-yellow-400 mr-2"><i class="fas fa-check"></i></span> Team communication
+                            strategies</li>
+                    </ul>
+                    <button
+                        class="mt-4 bg-yellow-500 text-black rounded-full py-2 px-6 font-semibold hover:bg-yellow-600 transition-all">Hire
+                        Us</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Podcast Section -->
+    <section id="podcast" class="py-20 bg-gradient-to-br from-white via-gray-100 to-white relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.1),transparent_50%)]"></div>
+        <div class="absolute inset-0 opacity-10">
+            <div
+                class="absolute inset-0 bg-[linear-gradient(45deg,rgba(0,0,0,0.1)_25%,transparent_25%),linear-gradient(-45deg,rgba(0,0,0,0.1)_25%,transparent_25%),linear-gradient(45deg,transparent_75%,rgba(0,0,0,0.1)_75%),linear-gradient(-45deg,transparent_75%,rgba(0,0,0,0.1)_75%)] bg-[length:20px_20px] animate-[gradient_20s_ease-in-out_infinite]">
+            </div>
+        </div>
+    
+        <div class="container mx-auto px-6 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-16 fade-in">
+                <h3 class="text-xl font-bold text-gold-400 bg-gradient-to-r bg-clip-text text-transparent mb-4"
+                    style="background-image: linear-gradient(to right, #ffab03, #ffab03, #ffab03); text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.022);">
+                    Podcasts
+                </h3>
+                <h2
+                    class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-gray-600 mb-6">
+                    Our Video Podcast
+                </h2>
+                <p class="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
+                    Dive into real conversations with industry experts. Get insights, strategies, and the real talk you
+                    need for success.
+                </p>
+            </div>
+    
+            <!-- Podcast Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Podcast Card 1 -->
+                <div class="group relative fade-in">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-gray-100 to-gray-300 rounded-xl opacity-50 blur transform group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div
+                        class="podcast-card relative bg-white border border-gray-300 rounded-xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300">
+                        <div class="w-full h-48 overflow-hidden">
+                            <iframe src="https://www.youtube.com/embed/bx48qPlaGvE" title="The Sales Grind"
+                                class="w-full h-full rounded-t-xl transform hover:scale-105 transition-transform duration-500"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-6 bg-gradient-to-b from-white to-gray-100">
+                            <h3
+                                class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-gray-600 mb-3">
+                                The Sales Grind
+                            </h3>
+                            <p class="mb-4 line-clamp-2" style="color: #040404b3" ;>Uncover the tactics that will power your
+                                sales
+                                success.</p>
+                            <a href="https://youtu.be/bx48qPlaGvE?si=_ex3fuLzbL5la_7S"
+                                class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-gray-800 to-gray-600 text-white rounded-full font-semibold text-sm transform hover:scale-105 transition-all duration-300">
+                                <span>Watch Now</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Podcast Card 2 -->
+                <div class="group relative fade-in">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-gray-100 to-gray-300 rounded-xl opacity-50 blur transform group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div
+                        class="podcast-card relative bg-white border border-gray-300 rounded-xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300">
+                        <div class="w-full h-48 overflow-hidden">
+                            <iframe src="https://www.youtube.com/embed/tcLRlJnfI5k?si=tSfuyhYGZKdYXUwW"
+                                title="Leading With Integrity"
+                                class="w-full h-full rounded-t-xl transform hover:scale-105 transition-transform duration-500"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-6 bg-gradient-to-b from-white to-gray-100">
+                            <h3
+                                class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-gray-600 mb-3">
+                                Leading With Integrity
+                            </h3>
+                            <p class="mb-4 line-clamp-2" style="color: #040404b3" ;>Expert conversations on developing a
+                                strong
+                                leadership style.</p>
+                            <a href="https://youtu.be/tcLRlJnfI5k?si=tSfuyhYGZKdYXUwW"
+                                class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-gray-800 to-gray-600 text-white rounded-full font-semibold text-sm transform hover:scale-105 transition-all duration-300">
+                                <span>Watch Now</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Podcast Card 3 -->
+                <div class="group relative fade-in">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-gray-100 to-gray-300 rounded-xl opacity-50 blur transform group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div
+                        class="podcast-card relative bg-white border border-gray-300 rounded-xl overflow-hidden transform hover:scale-[1.02] transition-all duration-300">
+                        <div class="w-full h-48 overflow-hidden">
+                            <iframe src="https://www.youtube.com/embed/aJj--35nAeE" title="Culture First Approach"
+                                class="w-full h-full rounded-t-xl transform hover:scale-105 transition-transform duration-500"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-6 bg-gradient-to-b from-white to-gray-100">
+                            <h3
+                                class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-gray-600 mb-3">
+                                Culture First Approach
+                            </h3>
+                            <p class="mb-4 line-clamp-2" style="color: #040404b3" ;>Building the right foundation for the
+                                right growth.
+                            </p>
+                            <a href="https://youtu.be/aJj--35nAeE?si=AqBu0E7EhB-QBeOa"
+                                class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-gray-800 to-gray-600 text-white rounded-full font-semibold text-sm transform hover:scale-105 transition-all duration-300">
+                                <span>Watch Now</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-gray-100/50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h3 class="text-xl font-bold text-gold-400 bg-gradient-to-r bg-clip-text text-transparent mb-4"
+                    style="background-image: linear-gradient(to right, #ffab03, #ffab03, #ffab03); text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.022);">
+                    Blog
+                </h3>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Latest From The Blog</h2>
+                <p class="text-xl text-gray-800/60 max-w-2xl mx-auto">
+                    Explore our latest articles and insights to enhance your sales, leadership, and overall business
+                    strategy.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="blog-card fade-in box-hover">
+                    <img src="blog1.png" alt="Blog Post 1" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="blog-title text-gray-900 mb-2">Top 5 Sales Hacks</h3>
+                        <p class="mb-4" style="color: #040404b3;">Boost your sales performance with these proven
+                            strategies.</p>
+                        <a href="#" class="text-yellow-500 hover:text-yellow-400 transition-colors font-medium">Read
+                            More</a>
+                    </div>
+                </div>
+                <div class="blog-card fade-in box-hover">
+                    <img src="blog2.png" alt="Blog Post 2" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="blog-title text-gray-900 mb-2">Effective Leadership Tips</h3>
+                        <p class="mb-4" style="color: #040404b3;">Become a better leader with these actionable tips.</p>
+                        <a href="#" class="text-yellow-500 hover:text-yellow-400 transition-colors font-medium">Read
+                            More</a>
+                    </div>
+                </div>
+                <div class="blog-card fade-in box-hover">
+                    <img src="blog3.png" alt="Blog Post 3" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="blog-title text-gray-900 mb-2">Cultivating a Great Culture</h3>
+                        <p class="mb-4" style="color: #040404b3;">Create an environment where employees thrive and
+                            prosper.</p>
+                        <a href="#" class="text-yellow-500 hover:text-yellow-400 transition-colors font-medium">Read
+                            More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-12 fade-in">
+                <h3 class="text-xl font-bold text-gold-400 bg-gradient-to-r bg-clip-text text-transparent mb-4"
+                    style="background-image: linear-gradient(to right, #ffab03, #ffab03, #ffab03); text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.022);">
+                    About Us
+                </h3>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">About Real Talk Results</h2>
+                <p class="text-xl text-gray-800/60">Learn more about our mission and how we provide actionable business
+                    growth.</p>
+            </div>
+            <div class="space-y-6 bg-gray-100 rounded-xl p-8 border border-gray-800/10 fade-in">
+                <p class="text-gray-900 leading-relaxed">
+                    We're on a mission to cut through the noise and provide real, actionable advice that drives
+                    tangible business growth. No fluff, no buzzwords – just honest insights and practical solutions.
+                </p>
+                <p class="text-gray-900 leading-relaxed">
+                    Our team of experienced professionals is dedicated to helping businesses like yours thrive. We
+                    offer customized strategies tailored to your unique needs, ensuring you get the results you're
+                    looking for.
+                </p>
+                <p class="text-gray-900 leading-relaxed">
+                    We offer strategies, content and support on sales, leadership and culture to help you achieve your
+                    business goals.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="py-20 bg-gray-100/50">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-12 fade-in">
+                <h3 class="text-xl font-bold text-gold-400 bg-gradient-to-r bg-clip-text text-transparent mb-4"
+                    style="background-image: linear-gradient(to right, #ffab03, #ffab03, #ffab03); text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.022);">
+                    Contact Us
+                </h3>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+                <p class="text-xl text-gray-800/60">
+                    Ready to transform your business? Let's have a real conversation about your needs and how we can
+                    help you achieve your goals.
+                </p>
+            </div>
+            <div class="space-y-6 bg-gray-100 rounded-xl p-8 border border-gray-800/10 fade-in">
+                <p class="text-gray-900 leading-relaxed mb-4">
+                    Reach out to us using the form or any of the contact details below. We're looking forward to
+                    hearing from you!
+                </p>
+                <p class="text-gray-900 leading-relaxed mb-4">
+                    You can also reach us directly via email at <a href="mailto:support@selfstorageawards.com"
+                        class="text-yellow-500 hover:text-yellow-400 transition-colors">hello@realtalkresults.com</a>
+                    or call us at <a href="tel:555-123-4567"
+                        class="text-yellow-500 hover:text-yellow-400 transition-colors">+1 (555) 123-4567</a>.
+                </p>
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-900 mb-2">Your Name</label>
+                            <input type="text"
+                                class="w-full px-4 py-2 bg-gray-800/10 rounded-lg text-gray-900 border border-gray-800/10 focus:border-yellow-500 outline-none transition-colors"
+                                required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-900 mb-2">Your Email</label>
+                            <input type="email"
+                                class="w-full px-4 py-2 bg-gray-800/10 rounded-lg text-gray-900 border border-gray-800/10 focus:border-yellow-500 outline-none transition-colors"
+                                required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-900 mb-2">Your Message</label>
+                        <textarea
+                            class="w-full px-4 py-2 bg-gray-800/10 rounded-lg text-gray-900 border border-gray-800/10 focus:border-yellow-500 outline-none transition-colors h-32 resize-none"
+                            required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit"
+                            class="px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black rounded-full hover:opacity-90 transition-all font-semibold">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="py-16 bg-gray     <footer class=" py-16 bg-gray-100/50 border-t border-gray-800/10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <!-- Logo section -->
+                <div class="space-y-6 text-center md:text-left">
+                    <span class="text-xl font-semibold text-gray-900">Real Talk Results</span>
+                    <p class="text-gray-800/60">Providing honest business insights and strategies since 2024.</p>
+                    <div class="flex gap-4 justify-center md:justify-start">
+                        <a href="#" class="p-2 bg-gray-800/5 rounded-lg hover:bg-gray-800/10 transition-colors">
+                            <i class="fab fa-twitter text-gray-900"></i>
+                        </a>
+                        <a href="#" class="p-2 bg-gray-800/5 rounded-lg hover:bg-gray-800/10 transition-colors">
+                            <i class="fab fa-instagram text-gray-900"></i>
+                        </a>
+                        <a href="#" class="p-2 bg-gray-800/5 rounded-lg hover:bg-gray-800/10 transition-colors">
+                            <i class="fab fa-facebook text-gray-900"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="text-center md:text-left">
+                    <h4 class="text-gray-900 font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-800/60 hover:text-gray-900 transition-colors">About Us</a>
+                        </li>
+                        <li><a href="#services"
+                                class="text-gray-800/60 hover:text-gray-900 transition-colors">Services</a>
+                        </li>
+                        <li><a href="#podcast"
+                                class="text-gray-800/60 hover:text-gray-900 transition-colors">Podcast</a>
+                        </li>
+                        <li><a href="#blog" class="text-gray-800/60 hover:text-gray-900 transition-colors">Blog</a>
+                        </li>
+                        <li><a href="#contact"
+                                class="text-gray-800/60 hover:text-gray-900 transition-colors">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="text-center md:text-left">
+                    <h4 class="text-gray-900 font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#contact" class="text-gray-800/60 hover:text-gray-900 transition-colors">Contact
+                                Us</a>
+                        </li>
+                        <li><a href="#" class="text-gray-800/60 hover:text-gray-900 transition-colors">Support</a></li>
+                        <li><a href="#" class="text-gray-800/60 hover:text-gray-900 transition-colors">Terms &
+                                Conditions</a>
+                        </li>
+                        <li><a href="#" class="text-gray-800/60 hover:text-gray-900 transition-colors">Privacy
+                                Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="text-center md:text-left">
+                    <h4 class="text-gray-900 font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-800/60 mb-4">Stay updated with the latest news and announcements.</p>
+                    <form class="flex gap-2 max-w-sm mx-auto md:mx-0">
+                        <input type="email" placeholder="Enter your email"
+                            class="flex-1 px-4 py-2 bg-gray-800/10 rounded-lg text-gray-900 border border-gray-800/10 focus:border-yellow-500 outline-none transition-colors">
+                        <button type="submit"
+                            class="px-4 py-2 bg-yellow-500 text-black rounded-lg hover:bg-yellow-400 transition-colors">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-800/10 text-center">
+                <p class="text-gray-800/40">© 2024 Real Talk Results. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            const desktopMenu = document.getElementById('desktopMenu');
+
+            if (window.scrollY > 80) {
+                nav.classList.add('bg-white/95', 'backdrop-blur-sm');
+                desktopMenu.classList.remove('text-white');
+                desktopMenu.classList.add('text-gray-900/80');
+            } else {
+                nav.classList.remove('bg-white/95', 'backdrop-blur-sm');
+                desktopMenu.classList.remove('text-gray-900/80');
+                desktopMenu.classList.add('text-white');
+            }
+        });
+
+        function animateNumber(elementId, target) {
+            let current = 0;
+            const element = document.getElementById(elementId);
+            const duration = 2000; // 2 seconds
+            const steps = 60;
+            const increment = target / steps;
+            const interval = duration / steps;
+
+            const suffix = {
+                clientsCount: '+',
+                successCount: '%',
+                yearsCount: '+'
+            };
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target; // Ensure it doesn't exceed the target
+                    clearInterval(timer);
+                }
+                // Append the appropriate suffix for each element
+                element.textContent = Math.round(current).toLocaleString() + (suffix[elementId] || '');
+            }, interval);
+        }
+
+        // Start animations when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                animateNumber('clientsCount', 500); // Adds +
+                animateNumber('successCount', 95);  // Adds %
+                animateNumber('yearsCount', 10);   // Adds +
+            }, 1400); // Delay to match with stats animation
+        });
+
+
+        document.getElementById('burgerBtn').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (e) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerBtn = document.getElementById('burgerBtn');
+
+            if (!mobileMenu.contains(e.target) && !burgerBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+        document.body.classList.add('loading');
+        const tips = [
+            "Real Talk Results - Transforming Business, One Insight at a Time",
+            "Honest advice for real growth",
+            "Practical strategies to drive your business forward",
+            "Helping businesses achieve success through real talk"
+        ];
+
+        let tipIndex = 0;
+        const tipElement = document.querySelector('.loading-tips');
+
+        function changeTip() {
+            // Animate the current tip out
+            gsap.to(tipElement, {
+                y: -20, // Slide up
+                opacity: 0,
+                duration: 0.5,
+                ease: 'power2.in',
+                onComplete: () => {
+                    // Change the text content
+                    tipElement.textContent = tips[tipIndex];
+                    tipIndex = (tipIndex + 1) % tips.length;
+                    // Animate the new tip in
+                    gsap.fromTo(tipElement, {
+                        y: 20,  // Start below
+                        opacity: 0,
+                    }, {
+                        y: 0,   // Slide up
+                        opacity: 1,
+                        duration: 0.5,
+                        ease: 'power2.out'
+                    });
+                }
+            });
+        }
+
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#FFD700" },
+                shape: { type: "circle" },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    animation: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    animation: { enable: true, speed: 2, size_min: 0.1, sync: false }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#FFD700",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    grab: { distance: 140, line_linked: { opacity: 0.5 } },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Initialize the tips before anything is loaded
+        tipElement.textContent = tips[tipIndex];
+        tipIndex = (tipIndex + 1) % tips.length;
+        setInterval(changeTip, 3000);
+
+
+        function hideLoader() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            loadingScreen.classList.add('loaded');
+            document.body.classList.remove('loading');
+
+            // Start content animations after loader is hidden
+            setTimeout(() => {
+                animateNumber('clientsCount', 500);
+                animateNumber('successCount', 95);
+                animateNumber('yearsCount', 10);
+            }, 1000);
+        }
+
+        function checkImageLoaded() {
+            const img = document.querySelector('img');
+            if (img.complete) {
+                hideLoader();
+            } else {
+                img.addEventListener('load', hideLoader);
+            }
+        }
+
+        checkImageLoaded();
+    </script>
+
+</body>
+
+</html>
