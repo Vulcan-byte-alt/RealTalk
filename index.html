@@ -908,9 +908,9 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
                 <!-- Logo section -->
                 <div class="relative text-center md:text-left">
-                    <div
-                        class="absolute  md:left-0 h-40 md:h-40 flex items-center">
-                        <img src="logo.png" alt="Real Talk Results" class="h-full w-auto object-contain transition-all duration-300 logo_footer"/>
+                    <div class="absolute  md:left-0 h-40 md:h-40 flex items-center">
+                        <img src="logo.png" alt="Real Talk Results"
+                            class="h-full w-auto object-contain transition-all duration-300 logo_footer" />
                     </div>
                     <!-- Add margin-top to account for absolute positioned logo -->
                     <div style="padding-top: 50px;margin-left: 20px;">
@@ -929,14 +929,15 @@
                     </div>
                 </div>
                 <style>
-                    @media (max-width: 768px){
-                        .logo_footer{
+                    @media (max-width: 768px) {
+                        .logo_footer {
                             margin-left: 110px;
                             margin-bottom: 150px;
                         }
                     }
-                    @media (min-width: 1024px){
-                        .logo_footer{
+
+                    @media (min-width: 1024px) {
+                        .logo_footer {
                             margin-right: 80px;
                             margin-bottom: 130px;
                         }
@@ -1019,7 +1020,7 @@
             logo.style.filter = 'brightness(0) invert(1)';
         });
 
-       window.addEventListener('scroll', () => {
+        window.addEventListener('scroll', () => {
             const nav = document.getElementById('mainNav');
             const desktopMenu = document.getElementById('desktopMenu');
             const logo = document.getElementById('mainLogo');
@@ -1208,6 +1209,19 @@
         }
 
         checkImageLoaded();
+
+        function checkVideoLoaded() {
+            const video = document.querySelector('video');
+            if (video.readyState >= 3) {
+                hideLoader();
+            } else {
+                video.addEventListener('canplay', hideLoader);
+            }
+        }
+
+
+        // Call checkVideoLoaded to start the process
+        checkVideoLoaded();
     </script>
 
 </body>
